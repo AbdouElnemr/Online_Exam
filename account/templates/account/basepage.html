@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <!-- custom css -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/util.css' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon-16x16.png' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <title>
+        {% block title %}
+
+        {% endblock %}
+    </title>
+
+</head>
+
+<body>
+<!-- header -->
+<!-- <section id="header-section"> -->
+<header class="container">
+    <div class="row flex-nowrap justify-content-around align-items-center py-3">
+
+        <a class="col-sm-2 col-md-2 col-lg-2" href=""> <img
+                src="{% static 'img/The_Fresh_Market_logo.svg' %}" width="75" height="75"></a>
+
+        <form class="col-sm-6 col-lg-6 form-inline my-2 my-lg-0 " method="get" action="">
+            <input class="form-control mr-sm-2" type="search" name="keyword" placeholder="Search"
+                   aria-label="Search">
+            <!--      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+
+        </form>
+
+
+        {% if request.user.is_authenticated %}
+
+        <!--                <a class="col-sm-12 col-md-3 col-lg-1 btn btn-md btn-outline-success my_user_name my-auto  "-->
+        <!--                   href="{% url 'account:login' %}">{{ request.user.username }}</a>-->
+
+        {% if request.user.profile.image %}
+
+        <a class="btn col-sm-2   col-lg-1 egoreis " href=" ">
+            <img class="thumbnail circular_image"
+                 width="40"
+                 height="40"
+                 src=""></a>
+
+        {% else %}
+
+        <a class="btn col-sm-2  col-lg-1 egoreis " href=""><img
+                class="thumbnail circular_image"
+                width="40"
+                height="40"
+                src="{% static 'img/user.png' %}"></a>
+        {% endif %}
+        <a class="btn col-sm-2  col-lg-1 egoreis  my_logout  my-auto mr-0" href="">Logout</a>
+
+        {% else %}
+
+        <div class="col-sm-2 col-md-4 col-lg-3 ">
+            <a class="btn btn-md col-sm-12 col-md-3   my-auto  egoreis login_btn"
+               href="{% url 'account:login' %}">Login</a>
+            <a class="btn btn-md  col-sm-12 col-md-3   my-auto egoreis  reg_btn"
+               href="{% url 'account:register' %}">Register</a>
+        </div>
+        {% endif%}
+     
+            </a>
+    </div>
+
+</header>
+
+<div>
+
+    {% block content %}
+
+    {% endblock %}
+
+</div>
+<!-- footer -->
+<!--
+
+
+<!-- footer -->
+
+
+<script src="{% static 'js/jquery-3.3.1.slim.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/main.js' %}" charset="utf-8"></script>
+</body>
+
+</html>
